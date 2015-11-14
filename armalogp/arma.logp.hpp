@@ -115,6 +115,9 @@ namespace armalogp {
 
   template<double LOGF(double), typename T, typename U>
   double exponential_logp(const T& x, const U& lambda) {
+    if(!arma::all(arma::vectorise(x > 0)) || !arma::all(arma::vectorise(lambda > 0))) {
+        return -std::numeric_limits<double>::infinity();
+    }
     return arma::accu(LOGF(lambda) - arma::schur_prod(lambda, x));
   }
 
