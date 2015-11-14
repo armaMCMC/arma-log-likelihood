@@ -18,7 +18,7 @@ double ans = armalogp::uniform_logp<std::log>(.5, 0.0, 1.0);
 
 ### Authors
 
-Whit Armstrong
+Whit Armstrong and Jacques-Henri Jourdan
 
 ### License
 
