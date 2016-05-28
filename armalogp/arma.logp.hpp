@@ -33,7 +33,7 @@ namespace armalogp {
 
   template<double LOGF(double), typename T, typename U, typename V>
   double normal_logp(const T& x, const U& mu, const V& tau) {
-    return arma::accu(0.5*LOGF(0.5*tau/arma::math::pi()) - 0.5 * arma::schur_prod(tau, square(x - mu)));
+    return arma::accu(0.5*LOGF(0.5*tau/arma::datum::pi) - 0.5 * arma::schur_prod(tau, square(x - mu)));
   }
 
   template<double LOGF(double), typename T, typename U, typename V>
@@ -123,7 +123,7 @@ namespace armalogp {
 
   template<double LOGF(double), typename T, typename U>
   double multivariate_normal_chol_logp(const T& x, const U& mu, const arma::mat& R) {
-    static double log_2pi = LOGF(2 * arma::math::pi());
+    static double log_2pi = LOGF(2 * arma::datum::pi);
     double ldet = LOGF(cholesky_determinant(R));
     return -0.5 * (x.n_elem * log_2pi + ldet + mahalanobis_chol(x,mu,R));
   }
